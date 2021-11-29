@@ -51,7 +51,7 @@ public class CameraMover : MonoBehaviour
         {
             ResetCameraRotation(); //回転角度のみリセット
             CameraRotationMouseControl(); //カメラの回転 マウス
-            CameraSlideMouseControl(); //カメラの縦横移動 マウス
+            // CameraSlideMouseControl(); //カメラの縦横移動 マウス
             //CameraPositionKeyControl(); //カメラのローカル移動 キー
         }
     }
