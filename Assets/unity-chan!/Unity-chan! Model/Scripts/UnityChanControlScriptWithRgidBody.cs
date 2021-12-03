@@ -116,27 +116,27 @@ namespace UnityChan
 				fly *= fallSpeed;	// 移動速度を掛ける
 			}
 
-			if (Input.GetButton ("Stop")) {
-				rb.useGravity = false;
-				rb.velocity = Vector3.zero;
-            }
+			// if (Input.GetButton ("Stop")) {
+			// 	rb.useGravity = false;
+			// 	rb.velocity = Vector3.zero;
+            // }
 
-			if (Input.GetButtonDown ("Jump")) {	// スペースキーを入力したら
+			// if (Input.GetButtonDown ("Jump")) {	// スペースキーを入力したら
 
-				//アニメーションのステートがLocomotionの最中のみジャンプできる
-				if (currentBaseState.nameHash == locoState) {
-					//ステート遷移中でなかったらジャンプできる
-					if (!anim.IsInTransition (0)) {
-						rb.AddForce (Vector3.up * jumpPower, ForceMode.VelocityChange);
-						anim.SetBool ("Jump", true);		// Animatorにジャンプに切り替えるフラグを送る
-					}
-				}
-			}
+			// 	//アニメーションのステートがLocomotionの最中のみジャンプできる
+			// 	if (currentBaseState.nameHash == locoState) {
+			// 		//ステート遷移中でなかったらジャンプできる
+			// 		if (!anim.IsInTransition (0)) {
+			// 			rb.AddForce (Vector3.up * jumpPower, ForceMode.VelocityChange);
+			// 			anim.SetBool ("Jump", true);		// Animatorにジャンプに切り替えるフラグを送る
+			// 		}
+			// 	}
+			// }
 
-			if (Input.GetButton ("Fly")) {
-				rb.useGravity = false;
-				transform.localPosition += fly * Time.fixedDeltaTime;
-			}
+			// if (Input.GetButton ("Fly")) {
+			// 	rb.useGravity = false;
+			// 	transform.localPosition += fly * Time.fixedDeltaTime;
+			// }
 
 			// 上下のキー入力でキャラクターを移動させる
 			transform.localPosition += velocity * Time.fixedDeltaTime;
@@ -202,7 +202,7 @@ namespace UnityChan
 					resetCollider ();
 				}
 				// スペースキーを入力したらRest状態になる
-				if (Input.GetButtonDown ("Jump")) {
+				if (Input.GetButtonDown ("Mark")) {
 					anim.SetBool ("Rest", true);
 				}
 			}
