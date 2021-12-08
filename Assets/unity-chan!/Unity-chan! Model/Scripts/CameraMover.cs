@@ -34,8 +34,8 @@ public class CameraMover : MonoBehaviour
     private Quaternion _initialCamRotation;
     //UIメッセージの表示
     private bool _uiMessageActiv;
-
-    void Start ()
+    private float eulerX = 0.0f;
+    void Start()
     {
         _camTransform = this.gameObject.transform;
 
@@ -43,7 +43,8 @@ public class CameraMover : MonoBehaviour
         _initialCamRotation = this.gameObject.transform.rotation;
     }
 
-    void Update () {
+    void Update()
+    {
 
         //CamControlIsActive(); //カメラ操作の有効無効
 
@@ -74,7 +75,7 @@ public class CameraMover : MonoBehaviour
     //回転を初期状態にする
     private void ResetCameraRotation()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             //this.gameObject.transform.rotation = _initialCamRotation;
             //Debug.Log("Cam Rotate : " + _initialCamRotation.ToString());
@@ -100,6 +101,29 @@ public class CameraMover : MonoBehaviour
             //回転開始角度 ＋ マウスの変化量 * マウス感度
             float eulerX = _presentCamRotation.x + y * _mouseSensitive;
             //float eulerY = _presentCamRotation.y + x * _mouseSensitive;
+            float eulerY = _presentCamRotation.y;
+
+            _camTransform.rotation = Quaternion.Euler(eulerX, eulerY, 0);
+        }
+        if (Input.GetKey(KeyCode.R))
+        {
+            _presentCamRotation.x = _camTransform.transform.eulerAngles.x;
+            _presentCamRotation.y = _camTransform.transform.eulerAngles.y;
+
+            //上に0.1ずつ向く
+            eulerX -= 0.15f;
+            float eulerY = _presentCamRotation.y;
+
+            _camTransform.rotation = Quaternion.Euler(eulerX, eulerY, 0);
+        }
+
+        if (Input.GetKey(KeyCode.F))
+        {
+            _presentCamRotation.x = _camTransform.transform.eulerAngles.x;
+            _presentCamRotation.y = _camTransform.transform.eulerAngles.y;
+
+            //下に0.1ずつ向く
+            eulerX += 0.15f;
             float eulerY = _presentCamRotation.y;
 
             _camTransform.rotation = Quaternion.Euler(eulerX, eulerY, 0);
@@ -157,20 +181,4 @@ public class CameraMover : MonoBehaviour
         }
         _uiMessageActiv = false;
     }
-
-    void OnGUI()
-    {
-        if (_uiMessageActiv == false) { return; }
-        GUI.color = Color.black;
-        if (_cameraMoveActive == true)
-        {
-            GUI.Label(new Rect(Screen.width / 2 - 50, Screen.height - 30, 100, 20), "カメラ操作 有効");
-        }
-
-        if (_cameraMoveActive == false)
-        {
-            GUI.Label(new Rect(Screen.width / 2 - 50, Screen.height - 30, 100, 20), "カメラ操作 無効");
-        }
-    }
-
 }
