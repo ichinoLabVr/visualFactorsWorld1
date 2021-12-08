@@ -14,6 +14,7 @@ public class Mark : MonoBehaviourPunCallbacks
     public GameObject PhotonController;
     public RandomMatchMaker script;
     AudioSource audioSource;
+    private Animator anim; // キャラにアタッチされるアニメーターへの参照
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class Mark : MonoBehaviourPunCallbacks
         PhotonController = GameObject.Find("PhotonController");
         script = PhotonController.GetComponent<RandomMatchMaker>();
         audioSource = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>(); // Animatorコンポーネントを取得する
     }
 
     // Update is called once per frame
@@ -33,6 +35,7 @@ public class Mark : MonoBehaviourPunCallbacks
             if (photonView.IsMine)
             {
                 photonView.RPC("ChangeMark", RpcTarget.All);
+                anim.SetBool("Rest", true);
             }
         }
 
