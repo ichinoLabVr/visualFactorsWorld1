@@ -11,6 +11,7 @@ public class DepthField : MonoBehaviourPunCallbacks
     private Rigidbody rb;
     private Vector3 cleanField;
     private Vector3 me;
+    public float intensity;
     private float dis;
     PostProcessVolume m_Volume;
     DepthOfField m_DepthOfField;
@@ -19,7 +20,7 @@ public class DepthField : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        cleanField = GameObject.FindGameObjectWithTag("DepthFieldArea").transform.position;
+        cleanField = GameObject.Find("DepthFieldArea").transform.position;
         postProcessGameObject = GameObject.Find("PostProcessingGO");
         m_DepthOfField = ScriptableObject.CreateInstance<DepthOfField>();
         m_DepthOfField.enabled.Override(true);
