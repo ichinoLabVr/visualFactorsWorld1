@@ -20,7 +20,7 @@ public class DepthField : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        cleanField = GameObject.FindGameObjectWithTag("BodyUp").transform.position;
+        cleanField = GameObject.Find("DepthFieldArea").transform.position;
         postProcessGameObject = GameObject.Find("PostProcessingGO");
         m_DepthOfField = ScriptableObject.CreateInstance<DepthOfField>();
         m_DepthOfField.enabled.Override(true);
@@ -37,7 +37,7 @@ public class DepthField : MonoBehaviourPunCallbacks
                 me = this.gameObject.transform.position;
                 dis = Vector3.Distance(cleanField, me);
                 Debug.Log(dis);
-                m_DepthOfField.focalLength.Override(dis * 5);
+                m_DepthOfField.focalLength.Override(dis*2);
                 m_Volume = PostProcessManager.instance.QuickVolume(postProcessGameObject.layer, 100f, m_DepthOfField);
                 Debug.Log(m_DepthOfField.focalLength.value);
             }
