@@ -16,17 +16,21 @@ public class DepthField : MonoBehaviourPunCallbacks
     private PostProcessVolume m_Volume;
     private DepthOfField m_DepthOfField;
     private GameObject postProcessGameObject;
+    private int RoomNum;
 
     void Start()
     {
-        rb = this.GetComponent<Rigidbody>();
-        cleanField = GameObject.Find("effectarea").transform.position;
-        postProcessGameObject = GameObject.Find("PostProcessingGO");
-        m_DepthOfField = ScriptableObject.CreateInstance<DepthOfField>();
-        m_DepthOfField.enabled.Override(true);
-        // m_DepthOfField.focalLength.Override(dis * 2);
-        m_DepthOfField.focalLength.Override(disx * 2);
-        m_Volume = PostProcessManager.instance.QuickVolume(postProcessGameObject.layer, 0f, m_DepthOfField);
+        if (photonView.IsMine) {
+            RoomNum = PhotonNetwork.CurrentRoom.PlayerCount;
+            rb = this.GetComponent<Rigidbody>();
+            cleanField = GameObject.Find($"effectarea{RoomNum}").transform.position;
+            postProcessGameObject = GameObject.Find("PostProcessingGO");
+            m_DepthOfField = ScriptableObject.CreateInstance<DepthOfField>();
+            m_DepthOfField.enabled.Override(true);
+            // m_DepthOfField.focalLength.Override(dis * 2);
+            m_DepthOfField.focalLength.Override(disx * 2);
+            m_Volume = PostProcessManager.instance.QuickVolume(postProcessGameObject.layer, 0f, m_DepthOfField);
+        }
     }
 
     // Update is called once per frame
@@ -41,6 +45,7 @@ public class DepthField : MonoBehaviourPunCallbacks
                 disx = cleanField.x - me.x;
                 // m_DepthOfField.focalLength.value = dis * 2;
                 m_DepthOfField.focalLength.value = Mathf.Abs(disx) * 2.5f;
+                // Debug.Log(m_DepthOfField.focalLength.value);
             }
         }
     }

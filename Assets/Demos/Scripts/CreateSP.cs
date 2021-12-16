@@ -12,7 +12,7 @@ public class CreateSP : MonoBehaviourPunCallbacks
     // AudioSource audioSource;
     GameObject Efbj;
     public GameObject[] Efbjs;
-    float ObjY = 1.0f; //SPの高さ
+    float ObjY = 0.5f; //SPの高さ
     int RoomNum;
     public override void OnJoinedRoom()
     {
@@ -46,7 +46,7 @@ public class CreateSP : MonoBehaviourPunCallbacks
     // 他プレイヤーがルームから退出した時に呼ばれるコールバック
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        RoomNum = PhotonNetwork.CurrentRoom.PlayerCount;
+        RoomNum = PhotonNetwork.CurrentRoom.PlayerCount + 1;
         Debug.Log("現在 " + RoomNum + "名 1人退出");
     }
 
@@ -68,12 +68,12 @@ public class CreateSP : MonoBehaviourPunCallbacks
                     if (i % 2 == 0)
                     {
                         Efbjs[(i * 8) + j] = Instantiate(Efbj, new Vector3(-5.0f + (i * 1.5f), ObjY, -4.9f + j * 1.5f), Quaternion.identity);
-                        Efbjs[j + (8 * i)].name = "effectarea" + (j + (8 * i));
+                        Efbjs[j + (8 * i)].name = "effectarea" + (j + (8 * i)+1);
                     }
                     else if (i % 2 == 1)
                     {
-                        Efbjs[(i * 8) + j] = Instantiate(Efbj, new Vector3(-5.0f + (i * 1.5f), 1.0f, -5.5f + j * 1.5f), Quaternion.identity);
-                        Efbjs[j + (8 * i)].name = "effectarea" + (j + (8 * i));
+                        Efbjs[(i * 8) + j] = Instantiate(Efbj, new Vector3(-5.0f + (i * 1.5f), ObjY, -5.5f + j * 1.5f), Quaternion.identity);
+                        Efbjs[j + (8 * i)].name = "effectarea" + (j + (8 * i)+1);
                     }
                 }
             }
