@@ -18,7 +18,7 @@ public class VignetteController : MonoBehaviourPunCallbacks
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
-        cleanVignette = GameObject.Find("vignette").transform.position;
+        cleanVignette = GameObject.Find("effectarea").transform.position;
         postProcessGameObject = GameObject.Find("PostProcessingGO");
         m_Vignette = ScriptableObject.CreateInstance<Vignette>();
         m_Vignette.enabled.Override(true);
@@ -38,7 +38,7 @@ public class VignetteController : MonoBehaviourPunCallbacks
                 me = this.gameObject.transform.position;
                 disz = cleanVignette.z - me.z;
                 Debug.Log(disz);
-                m_Vignette.center.value = new Vector2(0.5f - Mathf.Clamp(disz, -2f, 3f), 0.5f);
+                m_Vignette.center.value = new Vector2(0.5f - Mathf.Clamp(-disz*0.12f, -1f, 4f), 0.5f);
             }
         }
 

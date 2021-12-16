@@ -11,7 +11,8 @@ public class DepthField : MonoBehaviourPunCallbacks
     private Rigidbody rb;
     private Vector3 cleanField;
     private Vector3 me;
-    private float dis;
+    private float disx;
+    // private float dis;
     private PostProcessVolume m_Volume;
     private DepthOfField m_DepthOfField;
     private GameObject postProcessGameObject;
@@ -19,11 +20,12 @@ public class DepthField : MonoBehaviourPunCallbacks
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
-        cleanField = GameObject.Find("DepthFieldArea").transform.position;
+        cleanField = GameObject.Find("effectarea").transform.position;
         postProcessGameObject = GameObject.Find("PostProcessingGO");
         m_DepthOfField = ScriptableObject.CreateInstance<DepthOfField>();
         m_DepthOfField.enabled.Override(true);
-        m_DepthOfField.focalLength.Override(dis * 2);
+        // m_DepthOfField.focalLength.Override(dis * 2);
+        m_DepthOfField.focalLength.Override(disx * 2);
         m_Volume = PostProcessManager.instance.QuickVolume(postProcessGameObject.layer, 0f, m_DepthOfField);
     }
 
@@ -35,8 +37,10 @@ public class DepthField : MonoBehaviourPunCallbacks
             if (!rb.IsSleeping())
             {
                 me = this.gameObject.transform.position;
-                dis = Vector3.Distance(cleanField, me);
-                m_DepthOfField.focalLength.value = dis * 2;
+                // dis = Vector3.Distance(cleanField, me);
+                disx = cleanField.x - me.x;
+                // m_DepthOfField.focalLength.value = dis * 2;
+                m_DepthOfField.focalLength.value = Mathf.Abs(disx) * 2.5f;
             }
         }
     }
