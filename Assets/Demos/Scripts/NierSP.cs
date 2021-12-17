@@ -17,7 +17,7 @@ public class NierSP : MonoBehaviourPunCallbacks
     Transform targetpos;
     Vector3 tarpos;
     Vector3 unipos;
-    public float span = 1f;
+    public float span = 15f;
     private float currentTime = 0f;
 
     private GameObject closeEnemy;
