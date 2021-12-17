@@ -46,6 +46,18 @@ public class Mark : MonoBehaviourPunCallbacks
                 photonView.RPC("Audiostart", RpcTarget.All);
             }
         }
+        
+        if (Input.GetButtonDown("Master"))
+        {	// 9キーを入力したら
+            if (photonView.IsMine)
+            {
+                PhotonNetwork.SetMasterClient(photonView.Owner);
+                if (PhotonNetwork.LocalPlayer.IsMasterClient)
+                {
+                    Debug.Log("Master Clientになりました");
+                }
+            }
+        }
     }
 
     [PunRPC]

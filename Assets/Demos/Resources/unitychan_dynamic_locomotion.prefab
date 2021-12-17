@@ -1198,7 +1198,9 @@ GameObject:
   - component: {fileID: 8693120704304733453}
   - component: {fileID: 2193858684000377424}
   - component: {fileID: -972588873881134272}
+  - component: {fileID: -746373200609049939}
   - component: {fileID: -4402310920194677251}
+  - component: {fileID: -8171882574883753135}
   m_Layer: 0
   m_Name: unitychan_dynamic_locomotion
   m_TagString: Player
@@ -1491,6 +1493,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 8341692002946294165}
   - {fileID: 8693120704304733453}
+  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1661,6 +1664,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-746373200609049939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4644543400831452845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac7b2b1a91cb27048af6d006396be790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-4402310920194677251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1673,7 +1688,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a99ee72855c75d439f2bf9885a62fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intensity: 0
+--- !u!114 &-8171882574883753135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4644543400831452845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a6bfbc8bc03c48468a084a38eba7749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  rb: {fileID: 4644543400826267009}
+  span: 15
 --- !u!1 &4644543400831452847
 GameObject:
   m_ObjectHideFlags: 0
