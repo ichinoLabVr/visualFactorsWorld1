@@ -18,7 +18,7 @@ public class CreateSP : MonoBehaviourPunCallbacks
     {
         //リソースのSPを指定
         Efbj = (GameObject)Resources.Load("effectarea");
-        RoomNum = 24;
+        RoomNum = 32;
         Debug.Log("現在 " + RoomNum + "名");
 
         //作成するSPの数を配列で指定
@@ -46,7 +46,7 @@ public class CreateSP : MonoBehaviourPunCallbacks
     // 他プレイヤーがルームから退出した時に呼ばれるコールバック
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        RoomNum = PhotonNetwork.CurrentRoom.PlayerCount + 1;
+        RoomNum = PhotonNetwork.CurrentRoom.PlayerCount;
         Debug.Log("現在 " + RoomNum + "名 1人退出");
     }
 

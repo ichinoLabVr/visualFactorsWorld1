@@ -19,7 +19,7 @@ public class VignetteController : MonoBehaviourPunCallbacks
     void Start()
     {
         if (photonView.IsMine) {
-            RoomNum = PhotonNetwork.CurrentRoom.PlayerCount;
+            RoomNum = photonView.OwnerActorNr;
             rb = this.GetComponent<Rigidbody>();
             cleanVignette = GameObject.Find($"effectarea{RoomNum}").transform.position;
             postProcessGameObject = GameObject.Find("PostProcessingGO");

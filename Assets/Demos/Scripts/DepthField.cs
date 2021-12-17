@@ -21,9 +21,10 @@ public class DepthField : MonoBehaviourPunCallbacks
     void Start()
     {
         if (photonView.IsMine) {
-            RoomNum = PhotonNetwork.CurrentRoom.PlayerCount;
+            RoomNum = photonView.OwnerActorNr;
             rb = this.GetComponent<Rigidbody>();
             cleanField = GameObject.Find($"effectarea{RoomNum}").transform.position;
+            Debug.Log(RoomNum);
             postProcessGameObject = GameObject.Find("PostProcessingGO");
             m_DepthOfField = ScriptableObject.CreateInstance<DepthOfField>();
             m_DepthOfField.enabled.Override(true);
