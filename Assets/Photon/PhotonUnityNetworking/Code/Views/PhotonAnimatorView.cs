@@ -179,7 +179,6 @@ namespace Photon.Pun
         {
             if (videoStart) {
                 if(videoPlayer.time > 130f){
-                    videoPlayer.Stop();
                     audioSource.Stop();
                     PhotonNetwork.Disconnect();
                 }
